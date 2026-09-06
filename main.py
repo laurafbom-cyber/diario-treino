@@ -22,7 +22,16 @@ def cadastrar_treino():
     data = input("Data do treino: ")
     modalidade = input("Modalidade (Muay Thai/Musculação): ")
     duracao = input("Duração do treino (minutos): ")
-    intensidade = input("Intensidade (1 a 10): ")
+
+    # Validação da intensidade
+    while True:
+        intensidade = input("Intensidade (1 a 10): ")
+
+        if intensidade.isdigit() and 1 <= int(intensidade) <= 10:
+            break
+
+        print("Digite uma intensidade válida entre 1 e 10.")
+
     observacoes = input("Observações: ")
 
     novo_treino = {
