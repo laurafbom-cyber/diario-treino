@@ -1,0 +1,31 @@
+name: CD - Entrega do projeto
+
+on:
+  push:
+    branches:
+      - main
+      - feature/github-actions
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Baixar código
+        uses: actions/checkout@v4
+
+      - name: Criar pacote do projeto
+        run: |
+          mkdir entrega
+          cp main.py entrega/
+          cp .github/workflows/ci.yml entrega/
+          cp .github/workflows/cd.yml entrega/
+
+      - name: Publicar artefato
+        uses: actions/upload-artifact@v4
+        with:
+          name: diario-treino
+          path: entrega/
